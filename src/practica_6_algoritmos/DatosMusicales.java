@@ -1,6 +1,7 @@
 package practica_6_algoritmos;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 
 final class DatosMusicales {
@@ -43,6 +44,16 @@ final class DatosMusicales {
             case "first_week", "last_week" -> Tipo.FECHA;
             default -> Tipo.TEXTO;
         };
+    }
+
+    Comparator<Comparable<?>> comparadorColumna(int columna) {
+        Comparator<Comparable<?>> comparador = switch (tipoColumna(columna)) {
+            case TEXTO -> Comparator.comparing(String.class::cast);
+            case NUMERO -> Comparator.comparing(Double.class::cast);
+            case BOOLEANO -> Comparator.comparing(Boolean.class::cast);
+            case FECHA -> Comparator.comparing(LocalDate.class::cast);
+        };
+        return Comparator.nullsLast(comparador);
     }
 
     Comparable<?>[] arregloColumna(int columna, int cantidad) {
