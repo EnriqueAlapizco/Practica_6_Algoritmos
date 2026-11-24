@@ -20,7 +20,9 @@ El explorador de Kaggle muestra una tabla de registros y un resumen por columna.
 
 ## Ejecutar la carga
 
-Abre el proyecto en NetBeans con JDK 24 y presiona F6. La consola muestra el total de filas y columnas. Después, los seis métodos ordenan copias de una muestra de hasta 1,000 valores de `tempo`. Los valores vacíos se conservan y se ordenan al final.
+Abre el proyecto en NetBeans con JDK 24 y presiona F6. La consola muestra el total de filas y columnas, seguido por los tiempos en milisegundos para los seis métodos. Se prueban las primeras 1,000, 5,000 y 10,000 filas de cada columna. Los valores vacíos se conservan y quedan al final del arreglo ordenado.
+
+Cada método recibe una copia de la misma muestra. La copia se crea antes de iniciar el cronómetro y `System.nanoTime()` mide una ejecución del ordenamiento. Los tiempos pueden variar entre ejecuciones.
 
 La selección directa sigue el pseudocódigo de la diapositiva 11 de `Complejidad-Ordenamientos2026.pdf`. Shell sigue los saltos y los intercambios de la diapositiva 15.
 

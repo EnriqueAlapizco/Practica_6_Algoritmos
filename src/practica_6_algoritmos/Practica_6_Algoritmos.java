@@ -6,6 +6,7 @@ package practica_6_algoritmos;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Locale;
 
 /**
  *
@@ -27,26 +28,37 @@ public class Practica_6_Algoritmos {
             System.out.println("Filas: " + datos.totalFilas());
             System.out.println("Columnas: " + datos.totalColumnas());
 
-            probarOrdenamientos(datos);
+            mostrarTiempos(datos);
         } catch (IOException error) {
             System.err.println("No se pudo cargar el CSV " + archivo + ": " + error.getMessage());
         }
     }
 
-    private static void probarOrdenamientos(DatosMusicales datos) {
-        for (int columna = 0; columna < datos.totalColumnas(); columna++) {
-            if (datos.nombreColumna(columna).equals("tempo")) {
-                int cantidad = Math.min(datos.totalFilas(), 1_000);
-                Comparable<?>[] muestra = datos.arregloColumna(columna, cantidad);
-                var comparador = datos.comparadorColumna(columna);
-                System.out.println("Demostración con tempo: " + cantidad + " filas");
+    private static void mostrarTiempos(DatosMusicales datos) {
+        MedidorOrdenamiento medidor = new MedidorOrdenamiento();
+        Ordenamientos.Metodo[] metodos = Ordenamientos.Metodo.values();
+        int[] tamanos = {1_000, 5_000, 10_000};
 
-                for (Ordenamientos.Metodo metodo : Ordenamientos.Metodo.values()) {
-                    Comparable<?>[] copia = muestra.clone();
-                    Ordenamientos.ordenar(copia, comparador, metodo);
-                    System.out.println(metodo + ": " + copia.length + " valores ordenados.");
+        System.out.printf("%-27s %7s", "Columna", "Filas");
+        for (Ordenamientos.Metodo metodo : metodos) {
+            System.out.printf(" %22s", metodo);
+        }
+        System.out.println("  (ms)");
+
+        for (int columna = 0; columna < datos.totalColumnas(); columna++) {
+            int cantidadAnterior = 0;
+            for (int tamano : tamanos) {
+                int cantidad = Math.min(tamano, datos.totalFilas());
+                if (cantidad == cantidadAnterior) {
+                    break;
                 }
-                return;
+                var resultados = medidor.medir(datos, columna, cantidad, metodos);
+                System.out.printf("%-27s %7d", datos.nombreColumna(columna), cantidad);
+                for (MedidorOrdenamiento.Resultado resultado : resultados) {
+                    System.out.printf(Locale.ROOT, " %22.3f", resultado.milisegundos());
+                }
+                System.out.println();
+                cantidadAnterior = cantidad;
             }
         }
     }
