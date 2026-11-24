@@ -1,0 +1,4 @@
+/build/
+/dist/
+/nbproject/private/
+/datos/billboard_hot_100_spotify_audio_features_enriched.csv
