@@ -18,11 +18,13 @@ El CSV verificado contiene **32,503 filas de datos y 33 columnas**. Está en UTF
 
 El explorador de Kaggle muestra una tabla de registros y un resumen por columna. Para la interfaz, la referencia son los histogramas numéricos, las frecuencias de categorías y el conteo de valores faltantes.
 
-## Ejecutar la carga
+## Ejecutar la aplicación
 
-Abre el proyecto en NetBeans con JDK 24 y presiona F6. La consola muestra el total de filas y columnas, seguido por los tiempos en milisegundos para los seis métodos. Se prueban las primeras 1,000, 5,000 y 10,000 filas de cada columna. Los valores vacíos se conservan y quedan al final del arreglo ordenado.
+Abre el proyecto en NetBeans con JDK 24 y JavaFX 26 y presiona F6. Si tu SDK de JavaFX está en otra carpeta, agrega `javafx.lib=C:/ruta/javafx-sdk-26/lib` a `nbproject/private/private.properties`.
 
-Cada método recibe una copia de la misma muestra. La copia se crea antes de iniciar el cronómetro y `System.nanoTime()` mide una ejecución del ordenamiento. Los tiempos pueden variar entre ejecuciones.
+En **Conjunto de datos** puedes explorar el CSV y consultar la distribución de cada columna. En **Comparar ordenamientos** elige una columna, el tamaño de la muestra y un método o **Todos los métodos**. Presiona **Medir tiempos** para ver la gráfica y los tiempos en milisegundos.
+
+Cada método recibe una copia de la misma muestra. La copia se crea antes de iniciar el cronómetro y `System.nanoTime()` mide una ejecución del ordenamiento. Los valores vacíos quedan al final del arreglo ordenado. Los tiempos pueden variar entre ejecuciones.
 
 La selección directa sigue el pseudocódigo de la diapositiva 11 de `Complejidad-Ordenamientos2026.pdf`. Shell sigue los saltos y los intercambios de la diapositiva 15.
 

@@ -1,0 +1,45 @@
+.root {
+    -fx-font-size: 13px;
+    -fx-base: #f2f5f7;
+    -fx-accent: #00786e;
+}
+
+.encabezado {
+    -fx-background-color: #172d40;
+    -fx-padding: 19 24;
+}
+
+.titulo {
+    -fx-font-size: 29px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.detalle {
+    -fx-text-fill: #c9e0e5;
+}
+
+.panel {
+    -fx-background-color: white;
+    -fx-padding: 15;
+}
+
+.accion {
+    -fx-background-color: #00786e;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 6 14;
+}
+
+.accion:focused {
+    -fx-border-color: #172d40;
+    -fx-border-radius: 4;
+}
+
+.chart-bar {
+    -fx-bar-fill: #00786e;
+}
+
+.chart-plot-background {
+    -fx-background-color: #f6f8fa;
+}
